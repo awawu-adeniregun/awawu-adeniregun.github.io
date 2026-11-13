@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Awa People Analytics: HR operations and people analytics portfolio. A 13-page HR analytics dashboard, HR documentation, skills and contact details.">
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Awa People Analytics</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap">
+<style>
+/* Layout: ivory page, deep-teal hero band with a laptop-framed dashboard, then project, documentation, skills, about, connect.
+   Palette from the Awa People Analytics brand sheet: deep teal, warm coral, warm ivory, charcoal, muted gold. */
+:root {
+  --bg: #f6f1e8;
+  --surface: #ffffff;
+  --surface-2: #ece5d6;
+  --fg: #252b2d;
+  --muted: #5a6466;
+  --line: #ddd5c4;
+  --teal: #123f46;
+  --hero-bg: #123f46;
+  --hero-fg: #f6f1e8;
+  --hero-muted: #c3d2cf;
+  --coral: #f0785a;
+  --coral-ink: #123f46;
+  --coral-text: #c4452a;
+  --gold: #d8a84e;
+  --gold-text: #86600f;
+  --heading: #123f46;
+  --shadow: 0 1px 2px rgba(18,63,70,.08), 0 10px 28px rgba(18,63,70,.10);
+  --font-display: "Montserrat", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f2a2f; --surface: #153840; --surface-2: #1b464f; --fg: #f6f1e8; --muted: #b7c6c3; --line: #2a5760;
+    --hero-bg: #0a2227; --coral-text: #f58b72; --gold-text: #e3b865; --heading: #f6f1e8;
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 28px rgba(0,0,0,.3); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f2a2f; --surface: #153840; --surface-2: #1b464f; --fg: #f6f1e8; --muted: #b7c6c3; --line: #2a5760;
+  --hero-bg: #0a2227; --coral-text: #f58b72; --gold-text: #e3b865; --heading: #f6f1e8;
+  --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 28px rgba(0,0,0,.3); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.65; margin: 0; }
+.wrap { max-width: 1120px; margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; color: var(--heading); }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; border-radius: 4px; }
+
+/* nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; }
+.logo-chip { display: inline-flex; background: #fafafa; border-radius: 8px; padding: 3px 8px; }
+.logo-chip img { display: block; height: 38px; width: auto; }
+.nav ul { display: flex; flex-wrap: wrap; gap: 6px 22px; list-style: none; margin: 0; padding: 0; font-size: 14px; font-weight: 600; }
+.nav a.link { text-decoration: none; color: var(--muted); padding: 6px 0; border-bottom: 2px solid transparent; }
+.nav a.link:hover { color: var(--fg); border-bottom-color: var(--coral); }
+
+/* hero */
+.hero-band { background: var(--hero-bg); color: var(--hero-fg); position: relative; overflow: hidden; }
+.hero-band::before { content: ""; position: absolute; right: -8%; top: -30%; width: 60%; aspect-ratio: 1; border-radius: 50%;
+  border: 36px solid rgba(240,120,90,.16); pointer-events: none; }
+.hero { position: relative; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 48px; align-items: center; padding-block: 64px 0; }
+.hero-text { display: grid; gap: 18px; padding-bottom: 64px; }
+.eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+.hero h1 { font-size: clamp(34px, 5.4vw, 54px); font-weight: 800; letter-spacing: -.015em; color: var(--hero-fg); }
+.tagline { font-style: italic; font-size: 18px; color: var(--gold); }
+.lead { color: var(--hero-muted); font-size: 17px; max-width: 54ch; }
+.cred { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.cred li { font-size: 13px; font-weight: 700; letter-spacing: .06em; padding: 4px 12px; border-radius: 999px; border: 1px solid rgba(246,241,232,.35); }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 10px; font-weight: 700; font-size: 15px;
+  text-decoration: none; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; font-family: inherit; }
+.btn.primary { background: var(--coral); color: var(--coral-ink); border-color: var(--coral); }
+.btn.ghost { background: transparent; color: var(--hero-fg); border-color: rgba(246,241,232,.5); }
+.btn:hover { transform: translateY(-1px); }
+
+.laptop { align-self: end; margin: 0; cursor: zoom-in; }
+.laptop .screen { background: #0b1214; border-radius: 14px 14px 0 0; padding: 12px 12px 0; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+.laptop .screen::before { content: ""; position: absolute; top: 4px; left: 50%; width: 5px; height: 5px; border-radius: 50%; background: #2c3a3d; transform: translateX(-50%); }
+.laptop img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-radius: 4px 4px 0 0; }
+.laptop .base { height: 14px; width: 108%; margin-left: -4%; background: linear-gradient(#c9ced0, #9aa3a6); border-radius: 0 0 14px 14px; }
+
+section { padding-block: 64px; }
+.sec-head { margin-bottom: 28px; max-width: 70ch; }
+.sec-head .kicker { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--coral-text); margin-bottom: 8px; }
+.sec-head h2 { font-size: clamp(26px, 3.8vw, 38px); font-weight: 800; letter-spacing: -.01em; }
+.sec-head p { color: var(--muted); margin-top: 12px; }
+
+/* project */
+.meta-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+.meta-chips span { font-size: 13px; font-weight: 600; padding: 4px 12px; border-radius: 999px; background: var(--surface-2); color: var(--fg); }
+.overview { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px; align-items: start; }
+.overview .copy { display: grid; gap: 14px; color: var(--muted); }
+.overview .copy strong { color: var(--fg); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+.facts { display: grid; grid-template-columns: auto 1fr; gap: 12px 16px; margin: 0; font-size: 14.5px; }
+.facts dt { font-weight: 700; color: var(--muted); }
+.facts dd { margin: 0; min-width: 0; }
+.note { margin-top: 18px; padding: 14px 16px; border-left: 4px solid var(--gold); background: var(--surface-2); border-radius: 0 8px 8px 0; font-size: 14.5px; color: var(--muted); }
+
+.sub-title { font-family: var(--font-display); font-size: 22px; font-weight: 700; margin: 56px 0 6px; }
+.sub-note { color: var(--muted); font-size: 14.5px; margin-bottom: 18px; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; list-style: none; margin: 0; padding: 0; }
+.gallery button { all: unset; box-sizing: border-box; display: block; width: 100%; cursor: zoom-in; border-radius: 10px; overflow: hidden; background: var(--surface); border: 1px solid var(--line); }
+.gallery button:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
+.gallery button:hover { box-shadow: var(--shadow); }
+.gallery img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: top; }
+.gallery span { display: block; padding: 8px 10px; font-size: 13px; font-weight: 600; line-height: 1.35; }
+.gallery span b { color: var(--coral-text); margin-right: 6px; font-variant-numeric: tabular-nums; }
+
+.highlights { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.hl h3 { font-size: 18px; margin-bottom: 4px; }
+.hl .scope { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+.hl ul { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 8px; font-size: 15px; }
+.hl li { display: flex; gap: 10px; align-items: baseline; }
+.hl li b { font-family: var(--font-display); font-size: 20px; min-width: 3.2ch; color: var(--heading); font-variant-numeric: tabular-nums; }
+.hl .insight { font-size: 14.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+.hl .insight b { color: var(--coral-text); }
+.value { margin-top: 28px; max-width: 80ch; color: var(--muted); }
+
+/* documentation */
+.docs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.doc h3 { font-size: 18px; margin-bottom: 4px; }
+.status { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--gold-text); margin-bottom: 12px; }
+.doc ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; }
+.doc li { margin-bottom: 3px; }
+.doc .published { margin-bottom: 12px; display: grid; gap: 6px; }
+.doc .published a { font-weight: 600; }
+
+/* skills */
+.skills { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.skills h3 { font-size: 16px; margin-bottom: 12px; }
+.skills ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 14.5px; }
+.skills li { margin-bottom: 4px; }
+.skills li b { color: var(--fg); }
+.creds { margin-top: 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.creds strong { font-family: var(--font-display); margin-right: 6px; }
+.creds span { font-weight: 700; font-size: 13px; letter-spacing: .06em; padding: 4px 12px; border-radius: 999px; background: var(--teal); color: #f6f1e8; }
+
+/* about */
+.about { max-width: 74ch; display: grid; gap: 16px; color: var(--muted); }
+.about p:first-child { color: var(--fg); font-size: 18px; }
+.about details { margin-top: 4px; }
+.about summary { cursor: pointer; font-weight: 700; color: var(--coral-text); padding: 6px 0; }
+.about details[open] summary { margin-bottom: 12px; }
+.about details p { margin-bottom: 14px; }
+
+/* connect */
+.connect { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 40px; align-items: start; }
+.connect .copy { display: grid; gap: 14px; color: var(--muted); }
+.profile h3 { font-size: 20px; margin-bottom: 2px; }
+.profile .creds-line { font-weight: 700; font-size: 14px; letter-spacing: .06em; color: var(--coral-text); margin-bottom: 16px; }
+.profile h4 { font-family: var(--font-display); font-size: 14px; margin: 18px 0 8px; color: var(--heading); }
+.profile ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; }
+.rows { display: grid; gap: 10px; margin-top: 18px; font-size: 15px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.row b { min-width: 74px; color: var(--muted); }
+.row a { font-weight: 600; overflow-wrap: anywhere; }
+.copy-btn { font: inherit; font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 6px; cursor: pointer; background: var(--surface-2); color: var(--fg); border: 1px solid var(--line); }
+
+footer { background: var(--hero-bg); color: var(--hero-muted); font-size: 14px; }
+footer .wrap { padding-block: 28px; display: grid; gap: 6px; padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px)); }
+footer strong { color: var(--hero-fg); font-family: var(--font-display); }
+footer em { color: var(--gold); }
+
+/* lightbox */
+.lb { position: fixed; inset: 0; z-index: 50; background: rgba(6,20,23,.93); display: grid; grid-template-rows: auto 1fr auto; padding: 16px;
+  padding-top: calc(16px + env(safe-area-inset-top, 0px)); padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
+.lb[hidden] { display: none; }
+.lb-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; color: #f6f1e8; font-size: 14px; }
+.lb-bar button, .lb-nav button { font: inherit; font-weight: 600; cursor: pointer; border: 1px solid #3a6770; background: #153840; color: #f6f1e8; padding: 8px 14px; border-radius: 8px; }
+.lb-img { min-height: 0; display: grid; place-items: center; overflow: auto; }
+.lb-img img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; }
+.lb-nav { display: flex; justify-content: center; gap: 12px; padding-top: 12px; }
+
+@media (max-width: 900px) {
+  .hero, .overview, .connect { grid-template-columns: minmax(0, 1fr); }
+  .hero { padding-block: 44px 0; gap: 32px; }
+  .hero-text { padding-bottom: 0; }
+  .highlights, .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  section { padding-block: 44px; }
+}
+@media (max-width: 600px) {
+  .docs, .highlights, .skills { grid-template-columns: minmax(0, 1fr); }
+  .nav ul { gap: 4px 14px; font-size: 13px; }
+  .logo-chip img { height: 32px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn:hover { transform: none; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo-chip" href="#top" aria-label="Awa People Analytics, home"><img src="logo.png" alt="Awa People Analytics logo"></a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a class="link" href="#project">Project</a></li>
+        <li><a class="link" href="#documentation">Documentation</a></li>
+        <li><a class="link" href="#skills">Skills</a></li>
+        <li><a class="link" href="#about">About</a></li>
+        <li><a class="link" href="#connect">Connect</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="hero-band" id="top">
+  <div class="wrap hero">
+    <div class="hero-text">
+      <p class="eyebrow">HR operations and people analytics</p>
+      <h1>Turning HR data into meaningful insights.</h1>
+      <p class="tagline">People. Data. Better Decisions.</p>
+      <p class="lead">I am a people-focused professional with about 12 years of work experience, four of them in HR and people-related functions. I build structured HR systems and reports that support informed management decisions.</p>
+      <ul class="cred" aria-label="Professional credentials"><li>CHRMP</li><li>ACIPM</li><li>HRPL</li></ul>
+      <div class="cta">
+        <a class="btn primary" href="#project">View the featured project</a>
+        <a class="btn ghost" href="#connect">Let's connect</a>
+      </div>
+    </div>
+    <figure class="laptop" data-open="0" tabindex="0" role="button" aria-label="Open the Executive Summary page full size">
+      <div class="screen"><img src="p-01.jpg" alt="Executive Summary page of the HR Analytics Dashboard" width="1400" height="1400"></div>
+      <div class="base"></div>
+    </figure>
+  </div>
+</div>
+
+<main>
+  <section id="project" aria-labelledby="project-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">Featured project</p>
+        <h2 id="project-h">HR Analytics Dashboard</h2>
+      </div>
+      <div class="meta-chips"><span>Independent HR analytics project</span><span>Microsoft Power BI</span><span>January – October 2026</span><span>Synthetic workforce data</span></div>
+
+      <div class="overview">
+        <div class="copy">
+          <p>This project is a multi-page HR Analytics Dashboard built in Power BI. It shows how workforce data can become meaningful insight for HR planning, monitoring and management decision-making.</p>
+          <p>The dashboard brings together key HR metrics across the employee lifecycle: workforce composition, recruitment, retention, compensation, attendance, performance and workforce risk.</p>
+          <p>The aim was a central reporting tool that makes HR information easier to monitor, analyse and interpret. It demonstrates how I organise HR data, develop workforce indicators, build interactive reports and present people information for management review.</p>
+        </div>
+        <div class="card">
+          <dl class="facts">
+            <dt>Type</dt><dd>Independent portfolio project</dd>
+            <dt>Tools</dt><dd>Microsoft Power BI, on an Excel workbook of linked HR registers</dd>
+            <dt>Period</dt><dd>January – October 2026</dd>
+            <dt>Dataset</dt><dd>Synthetic data for a fictional company of 196 employees</dd>
+            <dt>Check</dt><dd>139 at start + 57 hires − 24 exits = 172 at end of October</dd>
+          </dl>
+          <p class="note">This is an independent portfolio project using synthetic data. It does not represent confidential employee or employer records.</p>
+        </div>
+      </div>
+
+      <h3 class="sub-title" id="gallery">Dashboard coverage: 13 interconnected pages</h3>
+      <p class="sub-note">Select a page to view it full size.</p>
+      <ol class="gallery" id="galleryList"></ol>
+
+      <h3 class="sub-title">Dashboard highlights</h3>
+      <p class="sub-note">How HR data translates into management insight. All figures are from the synthetic dataset.</p>
+      <div class="highlights">
+        <article class="card hl">
+          <h3>Performance Management</h3>
+          <p class="scope">Q1 to Q3. Q4 appraisals were not yet due.</p>
+          <ul>
+            <li><b>153</b> employees appraised</li>
+            <li><b>76.5</b> average performance score</li>
+            <li><b>54</b> top performers</li>
+            <li><b>61</b> solid performers</li>
+            <li><b>38</b> low performers</li>
+            <li><b>30</b> employees on Performance Improvement Plans</li>
+            <li><b>70</b> employees improved</li>
+            <li><b>64</b> employees declined</li>
+          </ul>
+          <p class="insight"><b>Insight:</b> identifies high performers, people who need support, and where targeted performance action may be needed.</p>
+        </article>
+        <article class="card hl">
+          <h3>Disciplinary Management</h3>
+          <p class="scope">January to October 2026</p>
+          <ul>
+            <li><b>40</b> cases recorded</li>
+            <li><b>35</b> employees disciplined</li>
+            <li><b>95%</b> case closure rate</li>
+            <li><b>2</b> open cases</li>
+            <li><b>5</b> repeat offenders</li>
+          </ul>
+          <p class="insight"><b>Insight:</b> gives visibility of conduct, recurring issues, case resolution and areas that need management attention.</p>
+        </article>
+        <article class="card hl">
+          <h3>Workforce Risk &amp; Succession</h3>
+          <p class="scope">As at the end of October 2026</p>
+          <ul>
+            <li><b>172</b> active employees</li>
+            <li><b>65</b> critical roles identified</li>
+            <li><b>36</b> of them rated critical for succession</li>
+            <li><b>2</b> critical roles held by people at or within 2 years of retirement age</li>
+          </ul>
+          <p class="insight"><b>Insight:</b> shows which roles need succession planning, knowledge transfer and proactive talent management.</p>
+        </article>
+      </div>
+      <p class="value">Overall, the dashboard shows how HR can move beyond routine reporting and give management structured information for workforce planning, performance monitoring, employee relations and organisational risk management.</p>
+    </div>
+  </section>
+
+  <section id="documentation" aria-labelledby="doc-h" style="background: var(--surface-2)">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">HR documentation and process improvement</p>
+        <h2 id="doc-h">Practical systems, clear documentation, structured processes.</h2>
+        <p>Effective HR management needs more than policies and procedures. This section shows my work on HR documents, administrative tools and process improvements that support consistency, accountability and operational efficiency.</p>
+      </div>
+      <div class="docs" id="docsList"></div>
+      <p class="note" style="margin-top:24px">This section will be updated as more projects and work samples are developed. Confidential organisational documents and employee information will not be published.</p>
+    </div>
+  </section>
+
+  <section id="skills" aria-labelledby="skills-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">Skills and tools</p>
+        <h2 id="skills-h">HR operations, workforce management and people analytics.</h2>
+        <p>I apply these skills to improve HR processes, organise workforce information and support effective management decisions.</p>
+      </div>
+      <div class="skills">
+        <div class="card">
+          <h3>HR &amp; People Management</h3>
+          <ul>
+            <li>Recruitment and selection</li><li>Workforce planning and coordination</li><li>Employee relations</li><li>Performance management</li>
+            <li>Disciplinary management</li><li>Employee onboarding and deployment</li><li>Compensation and benefits administration</li><li>Payroll coordination</li><li>Employee records management</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>HR Analytics &amp; Reporting</h3>
+          <ul>
+            <li>HR metrics and KPI development</li><li>Headcount and workforce analysis</li><li>Recruitment and attrition reporting</li><li>Attendance and overtime analysis</li>
+            <li>Compensation and payroll analysis</li><li>Performance and disciplinary reporting</li><li>Workforce risk and succession analysis</li><li>Management reporting and data presentation</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Business &amp; Administrative Operations</h3>
+          <ul>
+            <li>Administrative management</li><li>Executive support</li><li>Procurement and logistics coordination</li><li>Supplier relationship coordination</li><li>Stakeholder engagement</li><li>Cross-functional coordination</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Digital Tools</h3>
+          <ul>
+            <li><b>Excel:</b> HR data management, formulas, structured tables, reporting and workforce analysis</li>
+            <li><b>Power BI:</b> data modelling, DAX measures, interactive dashboards and HR visualisation</li>
+            <li><b>Word:</b> HR documentation, employment letters, policies and professional correspondence</li>
+            <li><b>PowerPoint:</b> reports, presentations and information sharing</li>
+          </ul>
+        </div>
+      </div>
+      <div class="creds"><strong>Professional credentials</strong><span>CHRMP</span><span>ACIPM</span><span>HRPL</span></div>
+    </div>
+  </section>
+
+  <section id="about" aria-labelledby="about-h" style="background: var(--surface-2)">
+    <div class="wrap">
+      <div class="sec-head"><p class="kicker">About me</p><h2 id="about-h">A people-focused professional, moving towards HR and data.</h2></div>
+      <div class="about">
+        <p>I am a people-focused professional with approximately 12 years of overall work experience, including four years in HR and people-related functions and one year of dedicated core HR experience. I hold CHRMP, ACIPM and HRPL professional credentials.</p>
+        <p>My professional journey spans administration, executive assistance, procurement and logistics, workforce coordination and human resource management. These experiences have given me a solid understanding of organisational operations, stakeholder engagement, people management and cross-functional coordination.</p>
+        <p>I have a growing interest in the intersection of HR and data, particularly how structured systems, workforce reporting and people analytics can improve HR processes and support informed management decisions.</p>
+        <details>
+          <summary>Read more about my experience</summary>
+          <p>In one of my previous roles, I was involved in the operational and workforce coordination of a registered company, supporting a multicultural workforce of approximately 25 employees comprising expatriate and indigenous personnel. I served as a key link between management, departmental leadership and employees, handling performance-related discussions, coordinating disciplinary matters and facilitating communication on workforce issues.</p>
+          <p>My employee relations responsibilities also included engaging with employees considering resignation, listening to their concerns and discussing their decisions before they formally submitted their resignations. I was also involved in sensitive employee exit processes, including communicating termination decisions and having difficult conversations with affected employees. Where necessary, I engaged Heads of Departments to discuss employee-related decisions and advocate for reconsideration.</p>
+          <p>I also supported recruitment and employee lifecycle activities, including facilitating interviews, preparing and issuing employment letters, coordinating onboarding and deploying employees to their respective work locations. Beyond workforce management, I coordinated with suppliers and supported procurement and logistics activities.</p>
+          <p>My broader HR experience covers recruitment, workforce planning, compensation and benefits, employee relations, payroll coordination and HR operations.</p>
+          <p>Through my professional experience and independent projects, I continue to develop practical HR solutions that connect effective people management, operational efficiency and business objectives.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="connect" aria-labelledby="connect-h">
+    <div class="wrap">
+      <div class="sec-head"><p class="kicker">Let's connect</p><h2 id="connect-h">Open to HR collaborations and conversations about people analytics.</h2></div>
+      <div class="connect">
+        <div class="copy">
+          <p>I am open to professional opportunities, HR collaborations, knowledge sharing and conversations around people management, HR operations and people analytics.</p>
+          <p>Whether you want to discuss an HR project or explore workforce solutions, I would be happy to engage.</p>
+          <div class="rows">
+            <div class="row"><b>Email</b><a href="mailto:hardeyniregun@gmail.com" id="emailText">hardeyniregun@gmail.com</a><button class="copy-btn" type="button" id="copyEmail">Copy</button></div>
+            <div class="row"><b>LinkedIn</b><a href="https://www.linkedin.com/in/awawuadeniregun/" target="_blank" rel="noopener">linkedin.com/in/awawuadeniregun</a></div>
+            <div class="row"><b>Location</b><span>Nigeria</span></div>
+          </div>
+        </div>
+        <div class="card profile">
+          <h3>Adeniregun Awawu Omowunmi</h3>
+          <p class="creds-line">CHRMP | ACIPM | HRPL</p>
+          <h4>Areas of interest</h4>
+          <ul>
+            <li>Human resource management</li><li>HR operations and workforce planning</li><li>People analytics and HR reporting</li><li>HR systems and process improvement</li><li>Organisational effectiveness</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Awa People Analytics</strong> · <em>People. Data. Better Decisions.</em></p>
+    <p>All figures and records in the HR Analytics Dashboard are synthetic and describe a fictional company.</p>
+  </div>
+</footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Dashboard page viewer">
+  <div class="lb-bar"><span id="lbTitle"></span><button type="button" id="lbClose">Close</button></div>
+  <div class="lb-img"><img id="lbImg" alt=""></div>
+  <div class="lb-nav"><button type="button" id="lbPrev">Previous</button><button type="button" id="lbNext">Next</button></div>
+</div>
+
+<script>
+/* ---- Content you edit ---- */
+var PAGES = [
+  "Executive Summary", "HR Analytics", "Attrition & Retention", "Recruitment", "Compensation", "Cost Analysis", "Attendance & Overtime",
+  "Leave Utilisation", "Training", "Training Investment", "Performance Management", "Disciplinary Management", "Workforce Risk"
+];
+
+/* Each category lists planned samples. When a sample is ready, add { title, href } to its items to publish it here. */
+var DOCS = [
+  { title: "HR Policies & Standard Operating Procedures", items: [], planned: [
+    "HR policies and guidelines", "Standard Operating Procedures (SOPs)", "Recruitment and selection procedures",
+    "Employee onboarding and exit procedures", "Performance management processes", "Disciplinary procedures" ] },
+  { title: "HR Forms & Employee Documentation", items: [], planned: [
+    "Employee information forms", "Recruitment requisition forms", "Interview assessment forms", "Leave application forms",
+    "Employee loan request forms", "Disciplinary documentation", "Employee exit and clearance forms" ] },
+  { title: "HR Systems & Excel Tools", items: [], planned: [
+    "Employee master database", "Position and headcount register", "Recruitment and vacancy tracker", "Candidate placement tracker",
+    "Salary structure and equity analysis", "Payroll and workforce reporting tools" ] },
+  { title: "Process Improvement & Workflow Development", items: [], planned: [
+    "Recruitment and placement workflow", "Employee documentation and record management", "HR reporting and data consolidation",
+    "Workforce monitoring and control systems", "Process standardisation and documentation" ] }
+];
+
+/* ---- Gallery and lightbox ---- */
+function pad(n) { return (n < 10 ? "0" : "") + n; }
+var galleryEl = document.getElementById("galleryList");
+PAGES.forEach(function (title, i) {
+  var li = document.createElement("li");
+  var b = document.createElement("button");
+  b.type = "button";
+  b.setAttribute("data-open", i);
+  b.setAttribute("aria-label", "Open page " + (i + 1) + ", " + title);
+  var img = document.createElement("img");
+  img.loading = "lazy"; img.src = "p-" + pad(i + 1) + ".jpg"; img.alt = ""; img.width = 400; img.height = 400;
+  var span = document.createElement("span");
+  var num = document.createElement("b"); num.textContent = String(i + 1);
+  span.appendChild(num); span.appendChild(document.createTextNode(title));
+  b.appendChild(img); b.appendChild(span); li.appendChild(b); galleryEl.appendChild(li);
+});
+
+var lb = document.getElementById("lb"), lbImg = document.getElementById("lbImg"), lbTitle = document.getElementById("lbTitle");
+var cur = 0, lastFocus = null;
+function show(i) {
+  cur = (i + PAGES.length) % PAGES.length;
+  lbImg.src = "p-" + pad(cur + 1) + ".jpg";
+  lbImg.alt = PAGES[cur] + " page of the HR Analytics Dashboard";
+  lbTitle.textContent = "Page " + (cur + 1) + " of " + PAGES.length + ": " + PAGES[cur];
+}
+function openLb(i) { lastFocus = document.activeElement; show(i); lb.hidden = false; document.getElementById("lbClose").focus(); }
+function closeLb() { lb.hidden = true; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+document.addEventListener("click", function (e) {
+  var t = e.target.closest("[data-open]");
+  if (t) openLb(parseInt(t.getAttribute("data-open"), 10));
+});
+document.querySelector(".laptop").addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLb(0); } });
+document.getElementById("lbClose").onclick = closeLb;
+document.getElementById("lbPrev").onclick = function () { show(cur - 1); };
+document.getElementById("lbNext").onclick = function () { show(cur + 1); };
+document.addEventListener("keydown", function (e) {
+  if (lb.hidden) return;
+  if (e.key === "Escape") closeLb();
+  if (e.key === "ArrowLeft") show(cur - 1);
+  if (e.key === "ArrowRight") show(cur + 1);
+});
+
+/* ---- Documentation cards ---- */
+var docsEl = document.getElementById("docsList");
+DOCS.forEach(function (d) {
+  var card = document.createElement("article"); card.className = "card doc";
+  var h = document.createElement("h3"); h.textContent = d.title; card.appendChild(h);
+  var st = document.createElement("span"); st.className = "status"; st.textContent = d.items.length ? "Published samples" : "Samples being added"; card.appendChild(st);
+  if (d.items.length) {
+    var pub = document.createElement("div"); pub.className = "published";
+    d.items.forEach(function (it) {
+      var a = document.createElement("a"); a.href = it.href; a.target = "_blank"; a.rel = "noopener"; a.textContent = it.title; pub.appendChild(a);
+    });
+    card.appendChild(pub);
+  }
+  var ul = document.createElement("ul");
+  d.planned.forEach(function (p) { var li = document.createElement("li"); li.textContent = p; ul.appendChild(li); });
+  card.appendChild(ul); docsEl.appendChild(card);
+});
+
+/* ---- Copy email ---- */
+document.getElementById("copyEmail").onclick = function () {
+  var btn = this, text = "hardeyniregun@gmail.com";
+  function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = "Copy"; }, 1800); }
+  try {
+    navigator.clipboard.writeText(text).then(function () { done("Copied"); }, function () { selectEmail(); done("Selected"); });
+  } catch (e) { selectEmail(); done("Selected"); }
+};
+function selectEmail() {
+  var r = document.createRange(); r.selectNodeContents(document.getElementById("emailText"));
+  var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+}
+</script>
+
+</body>
+</html>
